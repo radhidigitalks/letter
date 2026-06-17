@@ -32,7 +32,7 @@ export default function RequestDetail() {
 
   const fetchRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/date-requests/admin/date-requests/${params.id}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/date-requests/admin/date-requests/${params.id}`);
       const data = await response.json();
       if (data.success) {
         setRequest(data.data);
@@ -206,7 +206,7 @@ export default function RequestDetail() {
               <div className="bg-pink-50/80 backdrop-blur-sm rounded-2xl p-6">
                 <div className="text-lg text-gray-600 mb-4 font-bold">Uploaded Photo</div>
                 <img
-                  src={`http://localhost:8080${request.image_url}`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${request.image_url}`}
                   alt="Uploaded"
                   className="max-h-[500px] rounded-2xl object-cover mx-auto shadow-2xl"
                 />

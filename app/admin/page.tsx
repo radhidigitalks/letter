@@ -28,7 +28,7 @@ export default function AdminDashboard() {
 
   const fetchRequests = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/date-requests/admin/date-requests');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/date-requests/admin/date-requests`);
       const data = await response.json();
       if (data.success) {
         setRequests(data.data);
@@ -42,7 +42,7 @@ export default function AdminDashboard() {
 
   const updateStatus = async (id: string, status: 'APPROVED' | 'REJECTED') => {
     try {
-      await fetch(`http://localhost:8080/api/date-requests/admin/date-requests/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/date-requests/admin/date-requests/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export default function AdminDashboard() {
   const deleteRequest = async (id: string) => {
     if (confirm('Are you sure you want to delete this request?')) {
       try {
-        await fetch(`http://localhost:8080/api/date-requests/admin/date-requests/${id}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/date-requests/admin/date-requests/${id}`, {
           method: 'DELETE',
         });
         fetchRequests();
